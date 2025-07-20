@@ -59,7 +59,8 @@ func h8scaleNGo(dst, src []byte, cof, off []int16,
 		d := dst[di:]
 		for x, xoff := range off[:width] {
 			pix := 0
-			for i, v := range s[xoff : xoff+int16(taps)] {
+//			for i, v := range s[xoff : xoff+int16(taps)] {
+			for i, v := range s[xoff : int(xoff)+taps] { // rhw
 				pix += int(v) * int(c[i])
 			}
 			d[x] = u8((pix + 1<<(Bits-1)) >> Bits)
